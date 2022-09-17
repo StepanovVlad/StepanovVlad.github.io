@@ -31,7 +31,7 @@ class Kassa {
 		let block = document.getElementById('kassa');
 		block.addEventListener("change", e => {
 			let item = this.monets.find( item => item.id === +e.target.parentElement.id);
-			item.weight = +e.target.value;
+			item.weight = e.target.value;
 			console.log(+e.target.value, item);
 			this.render();
 			//console.log (e.target.parentElement)
@@ -40,13 +40,13 @@ class Kassa {
 }
 
 class Monets {
-	constructor (name, oneWeight, weight = 0){
+	constructor (name, oneWeight, weight = ''){
 		this.id = name;
 		this.oneweight = oneWeight;
-		this.weight = weight;
+		this.weight = weight.toString;
 	}
 	count () {
-		return Math.round(this.weight / this.oneweight)
+		return Math.round(+this.weight / this.oneweight)
 	}
 	sum () {
 		return this.id * this.count();
